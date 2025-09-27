@@ -16,9 +16,11 @@
                                 <field name="active"/>
                             </group>
                         </group>
-                        <group>
-                            <field name="description" nolabel="1" placeholder="Detailed description of the exercise, steps, and execution tips..."/>
-                        </group>
+
+                        <separator string="Detailed Description"/>
+                        <field name="description" nolabel="1" widget="textarea" colspan="4"
+                            placeholder="Detailed description of the exercise, steps, and execution tips..."/>
+
                     </sheet>
                 </form>
             </field>

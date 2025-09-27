@@ -1,0 +1,31 @@
+# ------------------------------------
+# 1. GENERAL OS AND EDITOR FILES
+# ------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+
+# ------------------------------------
+# 2. PYTHON AND VIRTUAL ENVIRONMENT
+# ------------------------------------
+*.pyc
+__pycache__/
+venv/
+env/
+
+# ------------------------------------
+# 3. LOG AND CONFIGURATION FILES
+# ------------------------------------
+*.log
+odoo.log
+.env
+*.conf
+odoo-server.conf
+
+# ------------------------------------
+# 4. DATA AND BACKUPS (ODOO/DB SPECIFIC)
+# ------------------------------------
+*.dump
+*.zip
+filestore/
+pg_data/
