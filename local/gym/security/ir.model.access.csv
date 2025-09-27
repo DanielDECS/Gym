@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gym_specialty_admin,access.gym.specialty.admin,model_gym_specialty,base.group_system,1,1,1,1
+access_gym_specialty_user,access.gym.specialty.user,model_gym_specialty,base.group_user,1,1,1,0
+access_gym_exercise_admin,access.gym.exercise.admin,model_gym_exercise,base.group_system,1,1,1,1
+access_gym_exercise_user,access.gym.exercise.user,model_gym_exercise,base.group_user,1,1,1,0

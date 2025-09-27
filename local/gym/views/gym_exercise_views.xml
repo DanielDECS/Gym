@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <record id="gym_exercise_view_form" model="ir.ui.view">
+            <field name="name">gym.exercise.view.form</field>
+            <field name="model">gym.exercise</field>
+            <field name="arch" type="xml">
+                <form string="Exercise">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="specialty_id"/>
+                            </group>
+                            <group>
+                                <field name="difficulty"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description" nolabel="1" placeholder="Detailed description of the exercise, steps, and execution tips..."/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="gym_exercise_view_tree" model="ir.ui.view">
+            <field name="name">gym.exercise.view.tree</field>
+            <field name="model">gym.exercise</field>
+            <field name="arch" type="xml">
+                <tree string="Exercises">
+                    <field name="name"/>
+                    <field name="specialty_id"/>
+                    <field name="difficulty"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gym_exercise_action" model="ir.actions.act_window">
+            <field name="name">Exercises</field>
+            <field name="res_model">gym.exercise</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new exercise and assign it to a specialty.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -6,7 +6,10 @@
     'author': 'Daniel Soares',
     'depends': ['base'],
     'data': [
-
+        'security/ir.model.access.csv',
+        'views/gym_specialty_views.xml',
+        'views/gym_exercise_views.xml',
+        'views/gym_menu.xml',
     ],
     'installable': True,
     'application': True,
