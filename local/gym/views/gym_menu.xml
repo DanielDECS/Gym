@@ -1,8 +1,40 @@
 <odoo>
     <data>
-        <menuitem id="gym_menu_root" name="Gym" sequence="1"/>
-        <menuitem id="gym_menu_config" name="Configuration" parent="gym_menu_root" sequence="2"/>
-        <menuitem id="gym_menu_specialty" name="Specialties" action="gym_specialty_action" parent="gym_menu_config" sequence="3"/>
-        <menuitem id="gym_menu_exercise" name="Exercises" action="gym_exercise_action" parent="gym_menu_config" sequence="4"/>
+        <menuitem id="gym_menu_root" 
+                  name="Gym" 
+                  sequence="100"/> 
+        
+        <menuitem id="gym_menu_people" 
+                  name="People" 
+                  parent="gym_menu_root" 
+                  sequence="10"/>
+                  
+        <menuitem id="gym_menu_member" 
+                  name="Members" 
+                  action="gym_member_action" 
+                  parent="gym_menu_people" 
+                  sequence="1"/>
+                  
+        <menuitem id="gym_menu_instructor" 
+                  name="Instructors" 
+                  action="gym_instructor_action" 
+                  parent="gym_menu_people" 
+                  sequence="2"/>
+        
+        <menuitem id="gym_menu_config" 
+                  name="Configuration" 
+                  parent="gym_menu_root" 
+                  sequence="200"/> 
+        
+        <menuitem id="gym_menu_specialty" 
+                  name="Specialties" 
+                  action="gym_specialty_action" 
+                  parent="gym_menu_config" 
+                  sequence="10"/>
+        <menuitem id="gym_menu_exercise" 
+                  name="Exercises" 
+                  action="gym_exercise_action" 
+                  parent="gym_menu_config" 
+                  sequence="20"/>
     </data>
 </odoo>

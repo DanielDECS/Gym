@@ -9,6 +9,8 @@
         'security/ir.model.access.csv',
         'views/gym_specialty_views.xml',
         'views/gym_exercise_views.xml',
+        'views/gym_instructor_views.xml',
+        'views/gym_member_views.xml',
         'views/gym_menu.xml',
     ],
     'installable': True,
