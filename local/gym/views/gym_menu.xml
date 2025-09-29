@@ -1,7 +1,8 @@
 <odoo>
     <data>
         <menuitem id="gym_menu_root" 
-                  name="Gym" 
+                  name="Gym"
+                  web_icon="gym.static/description/icon.png" 
                   sequence="100"/> 
         
         <menuitem id="gym_menu_people" 

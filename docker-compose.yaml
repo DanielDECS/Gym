@@ -26,6 +26,7 @@ services:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
+      - ODOO_MASTER_PASSWD=admin
     command: --init base --dev all
     networks:
       - odoo-net
