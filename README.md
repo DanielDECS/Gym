@@ -1,5 +1,7 @@
 # Gym System
 
+![Gym System Module Icon](static/description/icon.png)
+
 ## Project Description
 This system manages the relationships between clients, instructors, and specialties within a gym environment. Clients can view instructor availability, categorized by specialty, and schedule workout sessions. The system also allows for the registration of exercises associated with each specialty.
 
