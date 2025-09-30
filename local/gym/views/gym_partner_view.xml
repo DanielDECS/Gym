@@ -1,0 +1,161 @@
+<odoo>
+    <data>
+
+        <!-- Actions -->
+        <record id="gym_instructor_action" model="ir.actions.act_window">
+            <field name="name">Instructors</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{'default_is_instructor': True, 'default_is_company': False}</field>
+            <field name="domain">[('is_instructor','=',True)]</field>
+        </record>
+
+        <record id="gym_member_action" model="ir.actions.act_window">
+            <field name="name">Members</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{'default_is_member': True, 'default_is_company': False}</field>
+            <field name="domain">[('is_member','=',True)]</field>
+        </record>
+
+        <!-- Form View -->
+        <record id="res_partner_form_gym" model="ir.ui.view">
+            <field name="name">res.partner.form.gym</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook" position="inside">
+
+                    <!-- Declare fields used in attrs, invisible so they don't show -->
+                    <field name="is_instructor" invisible="1"/>
+                    <field name="is_member" invisible="1"/>
+                    <field name="same_vat_partner_id" invisible="1"/>
+
+                    <!-- Instructor Page -->
+                    <page string="Instructor Info" attrs="{'invisible': [('is_instructor','=',False)]}">
+                        <group>
+                            <field name="specialty_ids" widget="many2many_tags"/>
+                            <field name="hire_date"/>
+                            <field name="salary_rate"/>
+                        </group>
+                    </page>
+
+                    <!-- Member Page -->
+                    <page string="Membership Info" attrs="{'invisible': [('is_member','=',False)]}">
+                        <group>
+                            <field name="membership_level"/>
+                            <field name="membership_start"/>
+                            <field name="membership_end"/>
+                            <field name="instructor_ids" widget="many2many_tags"/>
+                        </group>
+                    </page>
+
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Tree Views -->
+        <record id="res_partner_tree_instructor" model="ir.ui.view">
+            <field name="name">res.partner.tree.instructor</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Instructors">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="specialty_ids" widget="many2many_tags"/>
+                    <field name="hire_date"/>
+                    <field name="salary_rate"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="res_partner_tree_member" model="ir.ui.view">
+            <field name="name">res.partner.tree.member</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Members">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="membership_level"/>
+                    <field name="membership_start"/>
+                    <field name="membership_end"/>
+                    <field name="instructor_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Kanban Views -->
+        <record id="res_partner_kanban_instructor" model="ir.ui.view">
+            <field name="name">res.partner.kanban.instructor</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="specialty_ids"/>
+                    <field name="hire_date"/>
+                    <field name="salary_rate"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('res.partner','image_128',record.id)" class="oe_kanban_avatar"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong>
+                                    <ul>
+                                        <li t-if="record.email.raw_value"><field name="email"/></li>
+                                        <li t-if="record.phone.raw_value"><field name="phone"/></li>
+                                        <li>Specialties: <field name="specialty_ids" widget="many2many_tags"/></li>
+                                        <li>Hired: <field name="hire_date"/></li>
+                                        <li>Rate: <field name="salary_rate"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="res_partner_kanban_member" model="ir.ui.view">
+            <field name="name">res.partner.kanban.member</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="membership_level"/>
+                    <field name="membership_start"/>
+                    <field name="membership_end"/>
+                    <field name="instructor_ids"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('res.partner','image_128',record.id)" class="oe_kanban_avatar"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong>
+                                    <ul>
+                                        <li t-if="record.email.raw_value"><field name="email"/></li>
+                                        <li t-if="record.phone.raw_value"><field name="phone"/></li>
+                                        <li>Level: <field name="membership_level"/></li>
+                                        <li>Start: <field name="membership_start"/></li>
+                                        <li>End: <field name="membership_end"/></li>
+                                        <li t-if="record.instructor_ids.raw_value">Instructors: <field name="instructor_ids" widget="many2many_tags"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    </data>
+</odoo>

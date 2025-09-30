@@ -1,5 +1,6 @@
 <odoo>
     <data>
+        <!-- Form View -->
         <record id="gym_exercise_view_form" model="ir.ui.view">
             <field name="name">gym.exercise.view.form</field>
             <field name="model">gym.exercise</field>
@@ -26,6 +27,7 @@
             </field>
         </record>
 
+        <!-- Tree View -->
         <record id="gym_exercise_view_tree" model="ir.ui.view">
             <field name="name">gym.exercise.view.tree</field>
             <field name="model">gym.exercise</field>
@@ -39,6 +41,7 @@
             </field>
         </record>
 
+        <!-- Action to open the view -->
         <record id="gym_exercise_action" model="ir.actions.act_window">
             <field name="name">Exercises</field>
             <field name="res_model">gym.exercise</field>

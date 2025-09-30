@@ -1,41 +1,50 @@
 <odoo>
     <data>
+        <!-- Root Menu -->
         <menuitem id="gym_menu_root" 
                   name="Gym"
-                  web_icon="gym.static/description/icon.png" 
-                  sequence="100"/> 
+                  sequence="100"
+                  web_icon="gym,static/description/icon.png"/> 
         
+        <!-- People Menu -->
         <menuitem id="gym_menu_people" 
                   name="People" 
                   parent="gym_menu_root" 
                   sequence="10"/>
-                  
+        
+        <!-- Members Action -->
         <menuitem id="gym_menu_member" 
                   name="Members" 
-                  action="gym_member_action" 
                   parent="gym_menu_people" 
+                  action="gym_member_action"
                   sequence="1"/>
                   
+        <!-- Instructors Action -->
         <menuitem id="gym_menu_instructor" 
                   name="Instructors" 
-                  action="gym_instructor_action" 
                   parent="gym_menu_people" 
+                  action="gym_instructor_action"
                   sequence="2"/>
         
+        <!-- Configuration Menu -->
         <menuitem id="gym_menu_config" 
                   name="Configuration" 
                   parent="gym_menu_root" 
                   sequence="200"/> 
         
+        <!-- Specialties Action -->
         <menuitem id="gym_menu_specialty" 
                   name="Specialties" 
-                  action="gym_specialty_action" 
                   parent="gym_menu_config" 
+                  action="gym_specialty_action"
                   sequence="10"/>
+        
+        <!-- Exercises Action -->
         <menuitem id="gym_menu_exercise" 
                   name="Exercises" 
-                  action="gym_exercise_action" 
                   parent="gym_menu_config" 
+                  action="gym_exercise_action"
                   sequence="20"/>
     </data>
 </odoo>
+

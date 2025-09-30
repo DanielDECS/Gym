@@ -3,5 +3,6 @@ access_gym_specialty_admin,access.gym.specialty.admin,model_gym_specialty,base.g
 access_gym_specialty_user,access.gym.specialty.user,model_gym_specialty,base.group_user,1,1,1,0
 access_gym_exercise_admin,access.gym.exercise.admin,model_gym_exercise,base.group_system,1,1,1,1
 access_gym_exercise_user,access.gym.exercise.user,model_gym_exercise,base.group_user,1,1,1,0
-access_gym_instructor,Access Gym Instructor,model_gym_instructor,base.group_user,1,1,1,1
-access_gym_member,Access Gym Member,model_gym_member,base.group_user,1,1,1,1
+access_gym_partner_user,gym.partner user,base.model_res_partner,base.group_user,1,1,1,0
+access_gym_partner_manager,gym.partner manager,base.model_res_partner,base.group_system,1,1,1,1
+

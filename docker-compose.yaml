@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   db:
     image: postgres:13
@@ -18,10 +20,10 @@ services:
     ports:
       - "8069:8069"
     volumes:
-      - odoo-data:/var/lib/odoo
-      - ./odoo.conf:/etc/odoo/odoo.conf
-      - ./src/odoo/addons:/mnt/extra-addons
-      - ./local:/mnt/local-addons
+      - odoo-data:/var/lib/odoo                  # Persistent Odoo data
+      - ./odoo.conf:/etc/odoo/odoo.conf          # Configuration file
+      - ./src/odoo/addons:/mnt/extra-addons.     # Official + extra addons
+      - ./local:/mnt/local-addons                # Local custom modules
     environment:
       - HOST=db
       - USER=odoo
@@ -32,8 +34,8 @@ services:
       - odoo-net
 
 volumes:
-  db-data:
-  odoo-data:
+  db-data:     
+  odoo-data:   
 
 networks:
-  odoo-net:
+  odoo-net:   
