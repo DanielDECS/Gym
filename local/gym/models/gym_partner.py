@@ -1,9 +1,11 @@
 from odoo import models, fields
 
 class GymPartner(models.Model):
-    # Main partner model for the gym
     _name = 'gym.partner'
     _description = 'Gym Partner'
+
+    # Image/photo of partner
+    image_1920 = fields.Image(string="Photo")  # Added to match view
 
     # Flags to identify type of partner
     is_instructor = fields.Boolean(string='Is Instructor', default=False)

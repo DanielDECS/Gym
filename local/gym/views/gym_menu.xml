@@ -1,38 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <!-- ACTIONS -->
-
-        <!-- Members action -->
-        <record id="gym_member_action" model="ir.actions.act_window">
-            <field name="name">Members</field>
-            <field name="res_model">gym.partner</field>
-            <field name="view_mode">tree,form</field>
-            <field name="domain">[('is_member','=',True)]</field>
-        </record>
-
-        <!-- Instructors action -->
-        <record id="gym_instructor_action" model="ir.actions.act_window">
-            <field name="name">Instructors</field>
-            <field name="res_model">gym.partner</field>
-            <field name="view_mode">tree,form</field>
-            <field name="domain">[('is_instructor','=',True)]</field>
-        </record>
-
-        <!-- Specialties action -->
-        <record id="gym_specialty_action" model="ir.actions.act_window">
-            <field name="name">Specialties</field>
-            <field name="res_model">gym.specialty</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <!-- Exercises action -->
-        <record id="gym_exercise_action" model="ir.actions.act_window">
-            <field name="name">Exercises</field>
-            <field name="res_model">gym.exercise</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <!-- MENUS -->
 
         <!-- Root menu -->
         <menuitem id="gym_menu_root"
@@ -79,5 +47,6 @@
                   parent="gym_menu_config"
                   action="gym_exercise_action"
                   sequence="20"/>
+
     </data>
 </odoo>

@@ -1,6 +1,5 @@
 from odoo import models, fields
 
-
 class GymExercise(models.Model):
     _name = 'gym.exercise'           # Technical name of the model
     _description = 'Gym Exercise'    # Human-readable description

@@ -1,17 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
 
-        <!-- ACTION: Instructors -->
-        <record id="gym_instructor_action" model="ir.actions.act_window">
-            <field name="name">Instructors</field>
-            <field name="res_model">gym.partner</field>
-            <field name="view_mode">tree,form</field>
-            <field name="domain">[('is_instructor','=',True)]</field>
+        <!-- TREE VIEWS -->
+
+        <!-- Tree view for members -->
+        <record id="gym_member_tree_view" model="ir.ui.view">
+            <field name="name">gym.partner.member.tree</field>
+            <field name="model">gym.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Members">
+                    <field name="name"/>
+                    <field name="level"/>
+                    <field name="membership_start"/>
+                    <field name="membership_end"/>
+                    <field name="instructor_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
         </record>
 
         <!-- Tree view for instructors -->
         <record id="gym_instructor_tree_view" model="ir.ui.view">
-            <field name="name">gym.instructor.tree</field>
+            <field name="name">gym.partner.instructor.tree</field>
             <field name="model">gym.partner</field>
             <field name="arch" type="xml">
                 <tree string="Instructors">
@@ -23,64 +33,62 @@
             </field>
         </record>
 
-        <!-- Form view for instructors -->
-        <record id="gym_instructor_form_view" model="ir.ui.view">
-            <field name="name">gym.instructor.form</field>
+        <!-- FORM VIEW -->
+        <record id="gym_partner_form_view" model="ir.ui.view">
+            <field name="name">gym.partner.form</field>
             <field name="model">gym.partner</field>
             <field name="arch" type="xml">
-                <form string="Instructor">
+                <form string="Gym Partner">
                     <sheet>
                         <group>
+                            <!-- Image field visible for both member and instructor -->
+                            <field name="image_1920" widget="image" class="oe_avatar"/>
                             <field name="name"/>
-                            <field name="specialty_id"/>
-                            <field name="hire_date"/>
-                            <field name="salary_rate"/>
+                            <field name="is_instructor"/>
+                            <field name="is_member"/>
                         </group>
+
+                        <notebook>
+                            <page string="Instructor" attrs="{'invisible':[('is_instructor','=',False)]}">
+                                <group>
+                                    <field name="specialty_id"/>
+                                    <field name="hire_date"/>
+                                    <field name="salary_rate"/>
+                                </group>
+                            </page>
+
+                            <page string="Member" attrs="{'invisible':[('is_member','=',False)]}">
+                                <group>
+                                    <field name="level"/>
+                                    <field name="membership_start"/>
+                                    <field name="membership_end"/>
+                                    <field name="instructor_ids" widget="many2many_tags"/>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <!-- ACTION: Members -->
+        <!-- ACTIONS -->
+
+        <!-- Members action -->
         <record id="gym_member_action" model="ir.actions.act_window">
             <field name="name">Members</field>
             <field name="res_model">gym.partner</field>
             <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="gym_member_tree_view"/> <!-- assign member tree view -->
             <field name="domain">[('is_member','=',True)]</field>
         </record>
 
-        <!-- Tree view for members -->
-        <record id="gym_member_tree_view" model="ir.ui.view">
-            <field name="name">gym.member.tree</field>
-            <field name="model">gym.partner</field>
-            <field name="arch" type="xml">
-                <tree string="Members">
-                    <field name="name"/>
-                    <field name="level"/>
-                    <field name="membership_start"/>
-                    <field name="membership_end"/>
-                    <field name="instructor_ids"/>
-                </tree>
-            </field>
-        </record>
-
-        <!-- Form view for members -->
-        <record id="gym_member_form_view" model="ir.ui.view">
-            <field name="name">gym.member.form</field>
-            <field name="model">gym.partner</field>
-            <field name="arch" type="xml">
-                <form string="Member">
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <field name="level"/>
-                            <field name="membership_start"/>
-                            <field name="membership_end"/>
-                            <field name="instructor_ids" widget="many2many_tags"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
+        <!-- Instructors action -->
+        <record id="gym_instructor_action" model="ir.actions.act_window">
+            <field name="name">Instructors</field>
+            <field name="res_model">gym.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="gym_instructor_tree_view"/> <!-- assign instructor tree view -->
+            <field name="domain">[('is_instructor','=',True)]</field>
         </record>
 
     </data>

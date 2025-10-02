@@ -5,7 +5,7 @@ class GymSpecialty(models.Model):
     _description = 'Gym Specialty'    # Human-readable description
 
     name = fields.Char(string='Specialty Name', required=True)   # Name of the specialty
-    description = fields.Text(string='Description')              # Description of the specialty
+    description = fields.Text(string='Description')             # Description of the specialty
     active = fields.Boolean(default=True)                        # Used to archive/disable specialties
 
     # One specialty can have multiple exercises
