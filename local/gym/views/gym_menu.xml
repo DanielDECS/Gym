@@ -1,50 +1,83 @@
 <odoo>
     <data>
-        <!-- Root Menu -->
-        <menuitem id="gym_menu_root" 
+        <!-- ACTIONS -->
+
+        <!-- Members action -->
+        <record id="gym_member_action" model="ir.actions.act_window">
+            <field name="name">Members</field>
+            <field name="res_model">gym.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_member','=',True)]</field>
+        </record>
+
+        <!-- Instructors action -->
+        <record id="gym_instructor_action" model="ir.actions.act_window">
+            <field name="name">Instructors</field>
+            <field name="res_model">gym.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_instructor','=',True)]</field>
+        </record>
+
+        <!-- Specialties action -->
+        <record id="gym_specialty_action" model="ir.actions.act_window">
+            <field name="name">Specialties</field>
+            <field name="res_model">gym.specialty</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Exercises action -->
+        <record id="gym_exercise_action" model="ir.actions.act_window">
+            <field name="name">Exercises</field>
+            <field name="res_model">gym.exercise</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- MENUS -->
+
+        <!-- Root menu -->
+        <menuitem id="gym_menu_root"
                   name="Gym"
                   sequence="100"
-                  web_icon="gym,static/description/icon.png"/> 
-        
-        <!-- People Menu -->
-        <menuitem id="gym_menu_people" 
-                  name="People" 
-                  parent="gym_menu_root" 
+                  web_icon="gym,static/description/icon.png"/>
+
+        <!-- People submenu -->
+        <menuitem id="gym_menu_people"
+                  name="People"
+                  parent="gym_menu_root"
                   sequence="10"/>
-        
-        <!-- Members Action -->
-        <menuitem id="gym_menu_member" 
-                  name="Members" 
-                  parent="gym_menu_people" 
+
+        <!-- Members menu item -->
+        <menuitem id="gym_menu_member"
+                  name="Members"
+                  parent="gym_menu_people"
                   action="gym_member_action"
                   sequence="1"/>
-                  
-        <!-- Instructors Action -->
-        <menuitem id="gym_menu_instructor" 
-                  name="Instructors" 
-                  parent="gym_menu_people" 
+
+        <!-- Instructors menu item -->
+        <menuitem id="gym_menu_instructor"
+                  name="Instructors"
+                  parent="gym_menu_people"
                   action="gym_instructor_action"
                   sequence="2"/>
-        
-        <!-- Configuration Menu -->
-        <menuitem id="gym_menu_config" 
-                  name="Configuration" 
-                  parent="gym_menu_root" 
-                  sequence="200"/> 
-        
-        <!-- Specialties Action -->
-        <menuitem id="gym_menu_specialty" 
-                  name="Specialties" 
-                  parent="gym_menu_config" 
+
+        <!-- Configuration submenu -->
+        <menuitem id="gym_menu_config"
+                  name="Configuration"
+                  parent="gym_menu_root"
+                  sequence="200"/>
+
+        <!-- Specialties menu item -->
+        <menuitem id="gym_menu_specialty"
+                  name="Specialties"
+                  parent="gym_menu_config"
                   action="gym_specialty_action"
                   sequence="10"/>
-        
-        <!-- Exercises Action -->
-        <menuitem id="gym_menu_exercise" 
-                  name="Exercises" 
-                  parent="gym_menu_config" 
+
+        <!-- Exercises menu item -->
+        <menuitem id="gym_menu_exercise"
+                  name="Exercises"
+                  parent="gym_menu_config"
                   action="gym_exercise_action"
                   sequence="20"/>
     </data>
 </odoo>
-
