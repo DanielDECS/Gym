@@ -4,22 +4,34 @@
 
         <!-- FORM VIEW -->
         <record id="gym_specialty_view_form" model="ir.ui.view">
+            <!-- Unique name for the view -->
             <field name="name">gym.specialty.view.form</field>
+            <!-- Model the view is associated with -->
             <field name="model">gym.specialty</field>
+            <!-- The actual XML architecture of the view -->
             <field name="arch" type="xml">
+                <!-- Title of the form -->
                 <form string="Specialty">
                     <sheet>
                         <group>
+                            <!-- Specialty name -->
                             <field name="name"/>
+                            <!-- Description of the specialty -->
                             <field name="description"/>
+                            <!-- Company field, visible only to multi-company users -->
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
-
+                        <!-- Notebook for related data -->
                         <notebook>
+                            <!-- Exercises tab -->
                             <page string="Associated Exercises">
+                                <!-- One2many field to list associated exercises -->
                                 <field name="exercise_ids">
+                                    <!-- Editable tree view for exercises -->
                                     <tree editable="bottom">
+                                        <!-- Exercise name -->
                                         <field name="name"/>
+                                        <!-- Difficulty level -->
                                         <field name="difficulty"/>
                                     </tree>
                                 </field>
@@ -32,12 +44,19 @@
 
         <!-- TREE VIEW -->
         <record id="gym_specialty_view_tree" model="ir.ui.view">
+            <!-- Unique name for the view -->
             <field name="name">gym.specialty.view.tree</field>
+            <!-- The model that this view applies to -->
             <field name="model">gym.specialty</field>
+            <!-- The actual XML architecture of the view -->
             <field name="arch" type="xml">
+                <!-- Title of the tree/list -->
                 <tree string="Specialties">
+                    <!-- Specialty name -->
                     <field name="name"/>
+                    <!-- Company field, visible only to multi-company users -->
                     <field name="company_id" groups="base.group_multi_company"/>
+                    <!-- Active checkbox to archive/unarchive -->
                     <field name="active" invisible="1"/>
                 </tree>
             </field>
@@ -45,9 +64,13 @@
 
         <!-- ACTION TO OPEN THE VIEW -->
         <record id="gym_specialty_action" model="ir.actions.act_window">
+            <!-- Action label -->
             <field name="name">Specialties</field>
+            <!-- Model to be opened -->
             <field name="res_model">gym.specialty</field>
+            <!-- View modes available: tree and form -->
             <field name="view_mode">tree,form</field>
+            <!-- Help text displayed when there are no records -->
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a new specialty (e.g., Yoga, Pilates).

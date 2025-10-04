@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-
         <!-- TREE VIEWS -->
 
         <!-- Tree view for members -->
         <record id="gym_member_tree_view" model="ir.ui.view">
+            <!-- Unique name for the view -->
             <field name="name">gym.partner.member.tree</field>
+            <!-- Model that this view applies to -->
             <field name="model">gym.partner</field>
+            <!-- The actual XML architecture of the view -->
             <field name="arch" type="xml">
+                <!-- Title of the tree view -->
                 <tree string="Members">
+                    <!-- Member name -->
                     <field name="name"/>
+                    <!-- Membership level -->
                     <field name="level"/>
+                    <!-- Membership start date -->
                     <field name="membership_start"/>
+                    <!-- Membership end date -->
                     <field name="membership_end"/>
+                    <!-- Many2many field to link to instructors -->
                     <field name="instructor_ids" widget="many2many_tags"/>
+                    <!-- Company field, visible only to multi-company users -->
                     <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
             </field>
@@ -22,14 +31,23 @@
 
         <!-- Tree view for instructors -->
         <record id="gym_instructor_tree_view" model="ir.ui.view">
+            <!-- Unique name for the view -->
             <field name="name">gym.partner.instructor.tree</field>
+            <!-- Model that this view applies to -->
             <field name="model">gym.partner</field>
+            <!-- The actual XML architecture of the view -->
             <field name="arch" type="xml">
+                <!-- Title of the tree view -->
                 <tree string="Instructors">
+                    <!-- Instructor name --> 
                     <field name="name"/>
+                    <!-- Specialty field -->
                     <field name="specialty_id"/>
+                    <!-- Hire date field -->
                     <field name="hire_date"/>
+                    <!-- Salary rate field -->
                     <field name="salary_rate"/>
+                    <!-- Company field, visible only to multi-company users -->
                     <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
             </field>
@@ -37,34 +55,49 @@
 
         <!-- FORM VIEW -->
         <record id="gym_partner_form_view" model="ir.ui.view">
+            <!-- Unique name for the view -->
             <field name="name">gym.partner.form</field>
+            <!-- Model that this view applies to -->
             <field name="model">gym.partner</field>
+            <!-- The actual XML architecture of the view -->
             <field name="arch" type="xml">
+
                 <form string="Gym Partner">
                     <sheet>
                         <group>
                             <!-- Image field visible for both member and instructor -->
                             <field name="image_1920" widget="image" class="oe_avatar"/>
+                            <!-- Name field -->
                             <field name="name"/>
+                            <!-- Checkboxes to identify if the partner is an instructor or member -->
                             <field name="is_instructor"/>
                             <field name="is_member"/>
+                            <!-- Company field, visible only to multi-company users -->
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
-
+                        <!-- Notebook with tabs for Instructor and Member specific fields -->
                         <notebook>
+                            <!-- Instructor tab, only visible if is_instructor = True -->
                             <page string="Instructor" attrs="{'invisible':[('is_instructor','=',False)]}">
                                 <group>
+                                    <!-- Specialty -->
                                     <field name="specialty_id"/>
+                                    <!-- Hire date -->
                                     <field name="hire_date"/>
+                                    <!-- Salary rate -->
                                     <field name="salary_rate"/>
                                 </group>
                             </page>
-
+                            <!-- Member tab, only visible if is_member = True -->
                             <page string="Member" attrs="{'invisible':[('is_member','=',False)]}">
                                 <group>
+                                    <!-- Membership details -->
                                     <field name="level"/>
+                                    <!-- Start date of membership -->
                                     <field name="membership_start"/>
+                                    <!-- End date of membership -->
                                     <field name="membership_end"/>
+                                    <!-- Many2many field to link to instructors -->
                                     <field name="instructor_ids" widget="many2many_tags"/>
                                 </group>
                             </page>
@@ -78,19 +111,29 @@
 
         <!-- Members action -->
         <record id="gym_member_action" model="ir.actions.act_window">
+            <!-- Action label -->
             <field name="name">Members</field>
+            <!-- Model to be opened -->
             <field name="res_model">gym.partner</field>
+            <!-- View modes available: tree and form -->
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="gym_member_tree_view"/> <!-- assign member tree view -->
+            <!-- Default tree view -->
+            <field name="view_id" ref="gym_member_tree_view"/>
+            <!-- Domain to filter only members -->
             <field name="domain">[('is_member','=',True)]</field>
         </record>
 
         <!-- Instructors action -->
         <record id="gym_instructor_action" model="ir.actions.act_window">
+            <!-- Action label -->
             <field name="name">Instructors</field>
+            <!-- Model to be opened -->
             <field name="res_model">gym.partner</field>
+            <!-- View modes available: tree and form -->
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="gym_instructor_tree_view"/> <!-- assign instructor tree view -->
+            <!-- Default tree view -->
+            <field name="view_id" ref="gym_instructor_tree_view"/>
+            <!-- Domain to filter only instructors -->
             <field name="domain">[('is_instructor','=',True)]</field>
         </record>
 
