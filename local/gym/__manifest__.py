@@ -1,18 +1,29 @@
 {
     'name': 'Gym Management System',
-    'version': '1.0',
+    'version': '1.1',
     'category': 'Services',
-    'summary': 'Manages gym clients, instructors, and training sessions.',
+    'summary': 'Gym management with members, instructors, specialties, and exercises',
+    'description': """
+        A simple gym management system with multi-company support.
+        - Manage Members
+        - Manage Instructors
+        - Manage Specialties
+        - Manage Exercises
+    """,
     'author': 'Daniel Soares',
-    'license': 'LGPL-3', # Explicit license
-    'depends': ['base'], # Depends on the base Odoo module
+    'license': 'LGPL-3', 
+    'depends': ['base', 'web',],  
     'data': [
-        'security/ir.model.access.csv',  # Access control for our models
-        'views/gym_partner_view.xml',    # Views for members and instructors
-        'views/gym_specialty_view.xml',  # Specialty views
-        'views/gym_exercise_view.xml',   # Exercise views
-        'views/gym_menu.xml',            # Main menu structure
+        'security/ir.model.access.csv',    # Access control
+        'security/gym_security.xml',       # Security rules
+        'views/gym_partner_views.xml',     # Views for members and instructors
+        'views/gym_specialty_views.xml',   # Specialty views
+        'views/gym_exercise_views.xml',    # Exercise views
+        'views/gym_menus.xml',             # Menu structure
     ],
-    'installable': True,   # Module can be installed
-    'application': True,   # Show in main Odoo apps menu
+    'installable': True,
+    'application': True,
 }
+
+
+

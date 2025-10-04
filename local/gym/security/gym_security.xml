@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Rule: Filter Gym Partners by multi-company -->
+        <record id="gym_partner_multi_company_rule" model="ir.rule">
+            <!-- Name of the rule -->
+            <field name="name">Partner Multi-Company Filter</field>
+            <!-- Apply the rule to the custom model gym.partner -->
+            <field name="model_id" ref="model_gym_partner"/>
+            <!-- Global means it will be applied to all users -->
+            <field name="global" eval="True"/>
+            <!-- Domain: allow records where company_id is empty OR in the companies of the current user -->
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]</field>
+        </record>
+
+        <record id="gym_exercise_multi_company_rule" model="ir.rule">
+            <field name="name">Exercise Multi-Company Filter</field>
+            <field name="model_id" ref="model_gym_exercise"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]</field>
+        </record>
+
+        <record id="gym_specialty_multi_company_rule" model="ir.rule">
+            <field name="name">Specialty Multi-Company Filter</field>
+            <field name="model_id" ref="model_gym_specialty"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]</field>
+        </record>
+
+
+    </data>
+</odoo>

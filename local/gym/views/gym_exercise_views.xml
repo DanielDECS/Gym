@@ -13,6 +13,7 @@
                             <group>
                                 <field name="name"/>
                                 <field name="specialty_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                             <group>
                                 <field name="difficulty"/>
@@ -37,6 +38,7 @@
                     <field name="name"/>
                     <field name="specialty_id"/>
                     <field name="difficulty"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                     <field name="active" invisible="1"/>
                 </tree>
             </field>
